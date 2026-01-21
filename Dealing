@@ -1,0 +1,21 @@
+local player = game.Players.LocalPlayer
+local character = player.Character
+
+-- Hacer que el personaje salte alto
+character.Humanoid.JumpPower = 500
+character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+
+-- Hacer que vuele a su base
+local base = game.Workspace.Base
+character.HumanoidRootPart.CFrame = base.CFrame + Vector3.new(0, 5, 0)
+
+-- Hacer que pegue con el bate
+local tool = character:FindFirstChild("Bate")
+if tool then
+    tool:Activate()
+end
+
+-- Hacer que no le puedan pegar
+character.Humanoid.MaxHealth = math.huge
+character.Humanoid.Health = math.huge
+character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Dead, false)
